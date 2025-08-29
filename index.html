@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaultScore - Build Your Credit Future</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+              <rect
+                x="8"
+                y="12"
+                width="24"
+                height="20"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M16 12V8a4 4 0 0 1 8 0v4"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              />
+              <path
+                d="M18 22l2 2 4-4"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              />
+              <path
+                d="M20 8l8 8M28 8l-8 8"
+                stroke="#10B981"
+                stroke-width="1.5"
+              />
+            </svg>
+            <span class="logo-text">VaultScore</span>
+          </div>
+          <nav class="nav">
+            <button class="nav-btn active" data-tab="dashboard">
+              Dashboard
+            </button>
+            <button class="nav-btn" data-tab="tracker">Tracker</button>
+            <button class="nav-btn" data-tab="simulator">Simulator</button>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard">
+          <div class="dashboard-grid">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+              <div class="stat-card primary">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <div class="stat-content">
+                  <h3>Total Deposited</h3>
+                  <p class="stat-value" id="totalDeposited">R0</p>
+                  <span class="stat-change positive">+R this month</span>
+                </div>
+              </div>
+
+              <div class="stat-card success">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <div class="stat-content">
+                  <h3>Interest Earned</h3>
+                  <p class="stat-value" id="interestEarned">R0</p>
+                  <span class="stat-change positive">4.5% APY</span>
+                </div>
+              </div>
+
+              <div class="stat-card warning">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <polyline
+                      points="12,6 12,12 16,14"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <div class="stat-content">
+                  <h3>Time Remaining</h3>
+                  <p class="stat-value" id="timeRemaining">12 months</p>
+                  <span class="stat-change neutral">Until withdrawal</span>
+                </div>
+              </div>
+
+              <div class="stat-card info">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3 3v18h18"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M7 12l3-3 3 3 5-5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <div class="stat-content">
+                  <h3>Credit Score Impact</h3>
+                  <p class="stat-value" id="creditImpact">+0</p>
+                  <span class="stat-change positive">Estimated points</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+              <h2>Your Progress</h2>
+              <div class="progress-container">
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-labels">
+                  <span>Start</span>
+                  <span id="progressText">0/12 months</span>
+                  <span>Eligible</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Section -->
+            <div class="action-section">
+              <h2>Monthly Deposit</h2>
+              <div class="deposit-form">
+                <div class="input-group">
+                  <label for="depositAmount">Amount</label>
+                  <input
+                    type="number"
+                    id="depositAmount"
+                    placeholder="100"
+                    min="25"
+                    max="1000"
+                    step="25"
+                  />
+                </div>
+                <button class="btn-primary" id="makeDeposit">
+                  <span>Make Deposit</span>
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M5 12h14M12 5l7 7-7 7"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tracker Tab -->
+        <div class="tab-content" id="tracker">
+          <div class="tracker-container">
+            <h2>12-Month Payment Tracker</h2>
+            <div class="tracker-grid" id="trackerGrid">
+              <!-- Generated by JavaScript -->
+            </div>
+            <div class="tracker-legend">
+              <div class="legend-item">
+                <div class="legend-dot paid"></div>
+                <span>Paid</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot missed"></div>
+                <span>Missed</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot pending"></div>
+                <span>Pending</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulator Tab -->
+        <div class="tab-content" id="simulator">
+          <div class="simulator-container">
+            <h2>Withdrawal Simulator</h2>
+            <div class="simulator-content">
+              <div class="simulator-controls">
+                <div class="input-group">
+                  <label for="simulatorMonths">Months Completed</label>
+                  <input
+                    type="range"
+                    id="simulatorMonths"
+                    min="0"
+                    max="12"
+                    value="0"
+                    step="1"
+                  />
+                  <span class="range-value" id="monthsValue">0</span>
+                </div>
+              </div>
+
+              <div class="simulation-results">
+                <div class="result-card">
+                  <h3>If you withdraw now:</h3>
+                  <div class="result-breakdown">
+                    <div class="breakdown-item">
+                      <span>Total Deposited:</span>
+                      <span id="simDeposited">R0</span>
+                    </div>
+                    <div class="breakdown-item">
+                      <span>Interest Earned:</span>
+                      <span id="simInterest">R0</span>
+                    </div>
+                    <div class="breakdown-item penalty" id="penaltyRow">
+                      <span>Early Withdrawal Penalty (10%):</span>
+                      <span id="simPenalty">-R0</span>
+                    </div>
+                    <div class="breakdown-total">
+                      <span>You Would Receive:</span>
+                      <span id="simTotal">R0</span>
+                    </div>
+                  </div>
+                  <div class="withdrawal-status" id="withdrawalStatus">
+                    <span class="status-text"
+                      >Early withdrawal - penalty applies</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/tracker.js"></script>
+    <script src="js/simulator.js"></script>
+    <footer
+      style="text-align: center; padding: 1rem; font-size: 0.9rem; color: #aaa"
+    >
+      © 2025 Natasha Smith. Licensed under the
+      <a
+        href="https://opensource.org/licenses/MIT"
+        target="_blank"
+        style="color: #aaa"
+        >MIT License</a
+      >.
+    </footer>
+  </body>
+</html>
